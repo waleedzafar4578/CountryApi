@@ -1,0 +1,6 @@
+@CountryApi_HostAddress = http://localhost:5141
+
+GET {{CountryApi_HostAddress}}/
+Accept: application/json
+
+###

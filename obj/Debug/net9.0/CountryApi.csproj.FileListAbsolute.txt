@@ -135,4 +135,7 @@ C:\Users\wali\Desktop\csharp\CountryApi\obj\Debug\net9.0\ref\CountryApi.dll
 C:\Users\wali\Desktop\csharp\CountryApi\bin\Debug\net9.0\Newtonsoft.Json.dll
 C:\Users\wali\Desktop\csharp\CountryApi\bin\Debug\net9.0\SendGrid.dll
 C:\Users\wali\Desktop\csharp\CountryApi\bin\Debug\net9.0\StarkbankEcdsa.dll
-C:\Users\wali\Desktop\csharp\CountryApi\bin\Debug\net9.0\package.json
+C:\Users\wali\Desktop\csharp\CountryApi\obj\Debug\net9.0\CountryApi.sourcelink.json
+C:\Users\wali\Desktop\csharp\CountryApi\bin\Debug\net9.0\dotenv.net.dll
+C:\Users\wali\Desktop\csharp\CountryApi\bin\Debug\net9.0\DotNetEnv.dll
+C:\Users\wali\Desktop\csharp\CountryApi\bin\Debug\net9.0\Sprache.dll

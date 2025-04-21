@@ -43,8 +43,8 @@ public class UserController : ControllerBase
                 return BadRequest("Email  already exists.");
             _context.Users.Add(user1);
             _context.SaveChanges();
-            // Create confirmation link
-            string confirmationLink = Helping.Helping.CreateConfirmationLink(token, "https://yourapp.com");
+           
+            string confirmationLink = Helping.Helping.CreateConfirmationLink(token);
             Helping.Helping.SendEmail(user.Email, "Email Confirmation", 
                 $"Please confirm your email by clicking <a href='{confirmationLink}'>here</a>.");
             // return Created("User Created", user);

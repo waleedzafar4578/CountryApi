@@ -1,8 +1,11 @@
 using CountryApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-
+using DotNetEnv;
+Env.Load();
 var builder = WebApplication.CreateBuilder(args);
+
+
 builder.
     Services.
     AddDbContext<AppDbContext>
@@ -23,6 +26,7 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Country API V1");
 });
+
 
 // app.UseHttpsRedirection();
 // app.UseAuthorization();

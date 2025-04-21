@@ -5,10 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Net.Mail;
+using DotNetEnv;
+
+
 namespace CountryApi.Helping;
 
 public static class Helping
 {
+    
     public static string HashPassword(string password)
     {
         using var sha256 = SHA256.Create();
@@ -58,22 +62,33 @@ public static class Helping
     {
         try
         {
+            var server = Environment.GetEnvironmentVariable("SERVER");
+            Console.WriteLine(server);
+            var ownerMail=Environment.GetEnvironmentVariable("OWNERMAIL");
+            Console.WriteLine(Environment.GetEnvironmentVariable("PASSWORD"));
             // Configure the SMTP client
-            var smtpClient = new SmtpClient("smtp.gmail.com")
+            var smtpClient = new SmtpClient(server)
             {
                 Port = 587, // TLS
-                Credentials = new NetworkCredential("dailywater737@gmail.com", "jcxp zdjd xddl renn "),
+                Credentials = new NetworkCredential(ownerMail
+                    , Environment.GetEnvironmentVariable("PASSWORD")),
                 EnableSsl = true // Secure connection
+                
             };
-
-            // Create the email
-            var mailMessage = new MailMessage
+            if (ownerMail is null)
             {
-                From = new MailAddress("dailywater737@gmail.com"),
-                Subject = subject,  
-                Body = body,
-                IsBodyHtml = true // Enable HTML content
-            };
+                Console.WriteLine("Email not sent");
+                return;
+            }
+            
+            // Create the email 
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress(ownerMail),
+                    Subject = subject,  
+                    Body = body,
+                    IsBodyHtml = true // Enable HTML content
+                };
 
             // Add recipient
             mailMessage.To.Add(recipientEmail);
@@ -93,9 +108,10 @@ public static class Helping
         return Guid.NewGuid().ToString(); // Generate a unique token
     }
 
-    public static string CreateConfirmationLink(string token, string baseUrl)
+    public static string CreateConfirmationLink(string token)
     {
-        return $"http://localhost:5141/api/confirm-email?token={token}";
+        var localBaseUrl = Environment.GetEnvironmentVariable("LOCALBASEURL");
+        return $"{localBaseUrl}/api/User/confirm-email?token={token}";
     }
     
 }
